@@ -61,14 +61,9 @@ export default function () {
 				throw new Error('Network response was not ok');
 			}
 			const data = await res.json();
-			console.log("data", data[1]);
+			console.log(data?.choices);
 			const plainText = [];
-			data[1]?.result?.forEach(item => {
-				plainText.push(item.id);
-				// console.log(JSON.stringify(item));
-				// plainText.push(JSON.stringify(item));
-				// console.log(plainText);
-			});
+			plainText.push(data?.choices[0]?.message?.content);
 			setText(plainText);
 			if(data.message === "success"){
 				toast.success(data.message);
