@@ -31,6 +31,7 @@ export default function () {
 			const data = await res.json();
 			if(data.message === "success"){
 				toast.success(data.message);
+				console.log(data)
 			}else
 			{
 				toast.error(data.message)
