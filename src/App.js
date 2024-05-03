@@ -1,15 +1,13 @@
 import { useState } from "react";
-import "./App.css";
+import { ToastContainer, toast } from 'react-toastify';
 import LoadingModal from "./componenets/LoadingModal";
 import Clock from "./componenets/Clock";
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import "./App.css";
 
 export default function () {
 	const [links, setLinks] = useState("");
 	const [search, setSearch] = useState("");
-	// const [searchResult, setSearchResult] = useState([]);
 	const [text, setText] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
 
@@ -46,7 +44,7 @@ export default function () {
 
 	const onSearch = async () => {
 		if (search.length === 0 ) {
-			toast.warning('Please provide some links before submitting.');
+			toast.warning('Please provide some keywords');
 			return;
 		}
 		setIsLoading(true);
@@ -65,15 +63,9 @@ export default function () {
 			const plainText = [];
 			plainText.push(data?.choices[0]?.message?.content);
 			setText(plainText);
-			if(data.message === "success"){
-				toast.success(data.message);
-			}else
-			{
-				toast.error(data.message)
-			}
 		} catch (error) {
 			console.error("Failed to fetch data:", error);
-			toast.warning('Failed to load data. Please try again later.',);
+			toast.warning('Please try again later.');
 		} finally {
 			setIsLoading(false); 
 		}

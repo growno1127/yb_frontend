@@ -85,13 +85,6 @@ p.yb-date {
   line-height: 14px;
 }
 
-p.error {
-  background-color: #fde6e4;
-  color: #ff4d4f;
-  padding:5px;
-  border-radius: 6px;
-}
-
 .mb-16 {
   margin-bottom: 16px;
 }
