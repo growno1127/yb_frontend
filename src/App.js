@@ -157,7 +157,7 @@ export default function () {
             <section>
                 <div className="left">
                     <ToastContainer />
-                    <form action="/submit-your-choice" method="post">
+                    <form>
                         <label>
                             <input onChange={(e) => {setType(1)}} type="radio" name="youtube" className="yb-input"/> Video Only
                             <hr />
