@@ -77,6 +77,22 @@ input[type="text"].yb-input:focus {
   outline: none;
 }
 
+input[type="text"].yb-channel {
+  display: block;
+  width: 50%;
+  padding: 5px 12px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #1f2328;
+  border: 1px solid #d0d7de;
+  border-radius: 6px;
+}
+
+input[type="text"].yb-channel:focus {
+  border-color: #0969da;
+  outline: none;
+}
+
 p.yb-date {
   margin: 0 0 6px;
   color: #aaa;
@@ -105,6 +121,16 @@ nav div {
   padding: 12px 24px;
   max-width: 800px;
   margin: 0 auto;
+}
+
+div.div-channel{
+  display: flex;
+  align-items: center;
+}
+input.file-open{
+  display: block;
+  font-size: 14px;
+  padding: 5px 12px;
 }
 
 section {
