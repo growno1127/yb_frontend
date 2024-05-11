@@ -157,7 +157,7 @@ export default function () {
             <section>
                 <div className="left">
                     <ToastContainer />
-                    <form>
+                    {/* <form> */}
                         <label>
                             <input onChange={(e) => {setType(1)}} type="radio" name="youtube" className="yb-input"/> Video Only
                             <hr />
@@ -179,7 +179,7 @@ export default function () {
                                 Get Transcripts
                             </button>
                             {isLoading && <LoadingModal />}</label>
-                    </form>
+                    {/* </form> */}
                 </div>
                 <div className="right">
                     <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} className="yb-input mb-16" placeholder="please input keyword..." />
