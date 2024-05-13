@@ -65,16 +65,18 @@ export default function () {
     }, [textContent])
 
     const onSubmit = async () => {
+        if(type===1){
         if (links.length === 0) {
             toast.warning('Please provide some links before submitting.');
             return;
-        }
+        }}else{
+           setLinks("")}
         setIsLoading(true);
         try {
             const res = await fetch("http://97.107.136.225:8000/", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ links, extra: textContent }),
+                body: JSON.stringify({ links, extra: textContent, channelName }),
             });
             if (!res.ok) {
                 throw new Error('Network response was not ok');
@@ -114,35 +116,13 @@ export default function () {
             console.log(data?.choices);
             const plainText = [];
             plainText.push(data?.choices[0]?.message?.content);
-            setText(plainText + "asdasda [" + search_channel + "]");
+            setText(plainText + "channel: [" + search_channel + "]");
         } catch (error) {
             console.error("Failed to fetch data:", error);
-            setText("Sorry, I don't know the answer." + "asdasda [" + search_channel + "]")
+            setText("Sorry, I don't know the answer." + "channel: [" + search_channel + "]")
         } finally {
             setIsLoading(false);
         };
-        setIsLoading(true);
-        try {
-            console.log(search);
-            const res = await fetch("http://97.107.136.225:8000/search", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ search, search_channel }),
-            });
-            if (!res.ok) {
-                throw new Error('Network response was not ok');
-            }
-            const data = await res.json();
-            console.log(data?.choices);
-            const plainText = [];
-            plainText.push(data?.choices[0]?.message?.content);
-            setText(plainText);
-        } catch (error) {
-            console.error("Failed to fetch data:", error);
-            setText("Sorry, I don't know the answer.")
-        } finally {
-            setIsLoading(false);
-        }
     };
 
     const handleFileChange = (e) => {
@@ -172,7 +152,7 @@ export default function () {
                             <input onChange={(e) => {setType(2)}} type="radio" name="youtube" className="yb-input"/> Channel
                             <hr />
                             <div className="div-channel mb-16" disabled = {type===2?false:true}>
-                                <input disabled = {type===2?false:true} type="text" value={channelName} onChange={(e) => setSearch(e.target.value)} className="yb-channel" placeholder="channel name..." />
+                                <input disabled = {type===2?false:true} type="text" value={channelName} onChange={(e) => setChannelName(e.target.value)} className="yb-channel" placeholder="channel name..." />
                                 <input disabled = {type===2?false:true} type="file" className="file-open" onChange={handleFileChange} accept=".docx, .csv, application/vnd.openxmlformats-officedocument.wordprocessingml.document, .pdf, .txt" />
                             </div>
                             <button className="yb-button ml-auto" onClick={onSubmit}>
